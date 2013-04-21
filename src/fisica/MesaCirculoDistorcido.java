@@ -16,6 +16,7 @@ public class MesaCirculoDistorcido {
 	public MesaCirculoDistorcido(double raio,int tam, long semente){
         matrix=new int[tam][tam];
 		retas=new ArrayList<SegmentoReta>();
+		ArrayList<SegmentoReta> retas2=new ArrayList<SegmentoReta>();
 		Random rnd=new Random(semente);
 		double ruidoAltaFrequencia[]= new double[6300];		
 		for(int cont=0;cont<ruidoAltaFrequencia.length;cont++){
@@ -23,33 +24,36 @@ public class MesaCirculoDistorcido {
 			
 		}
 		double ruidoBaixaFrequencia[]=retornaSinalBaixaFrequencia(ruidoAltaFrequencia, 6);
-		double descX=200.0;
+		double descX=300.0;
 		double descY=-1280.0;
 		double scala=120.0;
+		double scalaX=220.0;
 		int inc=0;
 		double nivel=26.5;
 
-		double xini=(Math.sin(0.0)*scala)+descX;
+		double xini=(Math.sin(0.0)*scalaX)+descX;
 		double yini=((Math.cos(0.0)+(ruidoBaixaFrequencia[inc++]*nivel))*scala)+descY;
-		//double xini=((Math.sin(0.0)+(ruidoBaixaFrequencia[inc++]*nivel*(Math.sin(0))))*scala)+descX;
-		//double yini=((Math.cos(0.0)+(ruidoBaixaFrequencia[inc++]*nivel*(Math.cos(0))))*scala)+descY;
+		double yini2=((Math.cos(0.0)+(ruidoBaixaFrequencia[0]*nivel))*scala)+descY;
 		for(double val=0.001;val<(2*pi);val=val+0.001){
-			double xtemp=((Math.sin(val))*scala)+descX;
+			double xtemp=((Math.sin(val))*scalaX)+descX;
 			double ytemp=((Math.cos(val)+(ruidoBaixaFrequencia[inc++]*nivel))*scala)+descY;
-			//double xtemp=((Math.sin(val)+(ruidoBaixaFrequencia[inc++]*nivel*(Math.sin(val))))*scala)+descX;
-			//double ytemp=((Math.cos(val)+(ruidoBaixaFrequencia[inc++]*nivel*(Math.cos(val))))*scala)+descY;
+			double ytemp2=((Math.cos(val)+(ruidoBaixaFrequencia[0]*nivel))*scala)+descY;	
 			retas.add(new SegmentoReta(yini,ytemp, xini,xtemp));
+			retas2.add(new SegmentoReta(yini2,ytemp2, xini,xtemp));
 			xini=xtemp;
 			yini=ytemp;
+			yini2=ytemp2;
 			
 		}
-		double xtemp=(Math.sin(0.0)*scala)+descX;
+		double xtemp=(Math.sin(0.0)*scalaX)+descX;
 		double ytemp=((Math.cos(0.0)+(ruidoBaixaFrequencia[0]*nivel))*scala)+descY;
-		//double xtemp=((Math.sin(0.0)+(ruidoBaixaFrequencia[0]*nivel*(Math.sin(0))))*scala)+descX;
-		//double ytemp=((Math.cos(0.0)+(ruidoBaixaFrequencia[1]*nivel*(Math.cos(0))))*scala)+descY;
+		double ytemp2=((Math.cos(0.0)+(ruidoBaixaFrequencia[0]*nivel))*scala)+descY;
 		retas.add(new SegmentoReta(yini,ytemp, xini,xtemp));
-		for(int cont=0;cont<retas.size();cont++) 
+		retas2.add(new SegmentoReta(yini,ytemp, xini,xtemp));
+		for(int cont=0;cont<retas.size();cont++){ 
 			desenhar_reta(retas.get(cont));
+			//desenhar_reta(retas2.get(cont));
+		}
 
 	}
 	private double[] retornaSinalBaixaFrequencia( double sinal[], int corteFiltro){

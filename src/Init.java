@@ -13,7 +13,7 @@ public class Init {
 		//FractalFlocoNeveAleatorio mesa=new FractalFlocoNeveAleatorio(234321L, 600, 50,420);
 		//MesaSimples mesa= new MesaSimples();
 		//MesaFourier mesa= new MesaFourier(234321L, 500, 560);
-		MesaCirculoDistorcido mesa= new MesaCirculoDistorcido(1, 600,322010L);
+		MesaCirculoDistorcido mesa= new MesaCirculoDistorcido(1, 600,79999320L);
 		//FractalFlocoNeveAleatorio mesa=new FractalFlocoNeveAleatorio(934321L, 600, 50,420);
 		//Stadium std=new Stadium(800,700);
 		int mesaBilhar[][]=mesa.getMatrix();;							
