@@ -49,19 +49,26 @@ public class PlotBilhar extends PApplet{
     	translate(width, height);
     	scale(90);
         background(255);
-        stroke(0,0,255);       	
-    	line(0, 0,20,10);
+        stroke(0,0,255);        
+    	ellipse(0.0f, 0.0f, 0.1f, 0.1f);
         for(SegmentoReta r: retas){
         	stroke(0,0,255);        	
         	line((float)r.get_p1x(), (float)r.get_p1y(),(float) r.get_p2x(),(float) r.get_p2y());
         }
-        
+        desenharCirculo(2.0f, 0.0001f);
         if(part2==null) drawOnePart();
-  
+        
        
               
     }
-   
+    public void desenharCirculo(float raio, float detalhe){
+    	stroke(255,0,0);
+    	for(float ini=0.0f; ini<6.28f;ini=ini+detalhe){    		
+    		line((float)Math.sin(ini)*raio,(float)Math.cos(ini)*raio,(float)Math.sin(ini+detalhe)*raio,(float)Math.cos(ini+detalhe)*raio);
+    	}
+    	
+    	
+    }
     public void drawOnePart(){    	
     	stroke(255,0,0);
         ellipse((float)part1.getPosiX(),(float)part1.getPosiY(),0.1f,0.1f);
