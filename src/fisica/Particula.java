@@ -17,14 +17,14 @@ public class Particula {
     private ArrayList<Ponto> pontosColisao;//pega os ultimos pontos com que a particula colidiu
     private Reta retaColisao;//pega a reta formada pelos ultimos pontos em que particula colidiu
     private Reta retaColisaoPerpendicular;//pega a reta perpendicular a reta formada pelos ultimos pontos em que particula colidiu
-    private float matrizPercurso[][];    
+    
     private long id;    
     private ArrayList<SegmentoReta> listaRetas;
-    public  Particula(double posix,double posiy,Vetor velocidade, int mesaBilhar[][], ArrayList<SegmentoReta> listaRetas){
+    public  Particula(double posix,double posiy,Vetor velocidade, ArrayList<SegmentoReta> listaRetas){
         this.posix=posix;
         this.posiy=posiy;
         this.velocidade=velocidade;        
-        this.matrizPercurso=new float [mesaBilhar.length][mesaBilhar[0].length];                                      
+                                             
         this.listaRetas=listaRetas;
         id=-1;
     }
@@ -64,7 +64,7 @@ public class Particula {
     		//fim
     		retaColisao=rf;
     		retaColisaoPerpendicular=rf.perpendicular(pf);
-    		desenhaReta(pf.x,posix, pf.y,posiy);
+    		
     		posix=pf.x;
     		posiy=pf.y;
     		id=rf.getID();
@@ -78,9 +78,7 @@ public class Particula {
     	    	    
     }
  
-    public float[][] percursoParticula(){
-    	return matrizPercurso;
-    }          
+       
     public Reta getRetaColisao(){
     	return retaColisao;
     }
@@ -122,16 +120,7 @@ public class Particula {
   	public Vetor getVelocidade() {
 		return velocidade;
 	}
-	 public void desenhaReta(double p1x,double p2x, double p1y,double p2y){
-	    	
-	    	double eq[]=new Reta(p1y,p2y, p1x,p2x,p2x-p1x, p2y-p1y).equacao_reta();
-	    	for(double xite=p1x;xite<p2x;xite=xite+0.01){
-	    		matrizPercurso[(int)xite][(int)(eq[0]*xite+eq[1])]=matrizPercurso[(int)xite][(int)(eq[0]*xite+eq[1])]+1.0f;
-	    	}
-	    	for(double xite=p2x;xite<p1x;xite=xite+0.01){
-	    		matrizPercurso[(int)xite][(int)(eq[0]*xite+eq[1])]=matrizPercurso[(int)xite][(int)(eq[0]*xite+eq[1])]+1.0f;
-	    	}
-	    }
+	 
 
 }
 
