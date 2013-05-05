@@ -9,6 +9,7 @@ import gui.PlotBilhar;
 
 public class Init {
 	public Init() throws InterruptedException{
+		//ollada
 		//FractalFlocoNeveAleatorio mesa=new FractalFlocoNeveAleatorio(234321L, 600, 50,420);
 		//MesaSimples mesa= new MesaSimples();
 		//MesaFourier mesa= new MesaFourier(234321L, 500, 560);
